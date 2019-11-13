@@ -8,10 +8,22 @@
 
 import UIKit
 
-class NotesViewController: UIViewController , UITableViewDataSource ,UITableViewDelegate{
-   
-    var notes:[String] = [""]
 
+class NotesViewController: UIViewController , UITableViewDataSource ,UITableViewDelegate , canRecieve {
+    func sendData(data: String) {
+    notes.append(data)
+        NotesTableView.reloadData()
+    }
+    
+   
+   
+    
+    
+    
+    var notes:[String] = []
+    
+    
+    var name:String?
     @IBOutlet weak var TrashButton: UIButton!
     
     
@@ -21,8 +33,9 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         super.viewDidLoad()
         TrashButton.isEnabled = false
         FolderButton.isEnabled = false
-
        
+        
+    
     }
     
 
@@ -32,10 +45,16 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell:UITableViewCell = (self.NotesTableView.dequeueReusableCell(withIdentifier: "NotesCell") as UITableViewCell?)!
+        
+       
+        cell.textLabel?.text = notes[indexPath.row]
+        
+       
         return cell
        }
 
     @IBAction func EllipseButton(_ sender: UIButton) {
+        
         
         if TrashButton.isEnabled == false && FolderButton.isEnabled == false{
         TrashButton.isEnabled = true
@@ -48,7 +67,10 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
 
         }
        
-        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let userData = segue.destination as! TextViewController
+        userData.delegate = self
         
         
     }
@@ -56,4 +78,6 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
     
     
     
+    
 }
+

@@ -8,40 +8,52 @@
 
 import UIKit
 
+protocol canRecieve {
+    func sendData(data: String)
+}
+
+
+
 class TextViewController: UIViewController {
 
     @IBOutlet weak var UserText: UITextView!
     
-    
+    var delegate: canRecieve?
     var text:String?
+    var text2:String?
+    var arrayText:[String] = []
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         UserText.text = ""
-        
-    }
-    
-
-    func getText() ->String{
-    
-        text = UserText.text
-        
-        print(text!)
-    
-    return text!
-    
-    }
-
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
+        UserText.becomeFirstResponder()
         
         
     }
+    func getText(){
+       
+           text = UserText.text
+           
+//           print(text!)
+       
+           arrayText.append(text!)
+       
+       }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        getText()
+        text2 = text
+        delegate?.sendData(data: text2!)
+        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        
+        
+        
+    }
+    
+    
     
 
 }
