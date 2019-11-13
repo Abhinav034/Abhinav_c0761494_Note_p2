@@ -48,9 +48,7 @@ class TextViewController: UIViewController {
         delegate?.sendData(data: text2!)
         dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
-        
-        
-        
+       
     }
     
     

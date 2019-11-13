@@ -12,7 +12,7 @@ import UIKit
 class NotesViewController: UIViewController , UITableViewDataSource ,UITableViewDelegate , canRecieve {
     
     var notes:[String] = []
-    
+    var selected = [String]()
     
     var name:String?
     @IBOutlet weak var TrashButton: UIButton!
@@ -90,13 +90,27 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         
     }
     
+    
+    @IBAction func TranshButtonPressed(_ sender: UIButton) {
+        
+        
+        
+        
+    }
 }
 
 extension NotesViewController {
     
     
     func selectOrDeselect (tableview: UITableView , indexpath: IndexPath){
-        
+        self.selected.removeAll()
+        if let array = NotesTableView.indexPathsForSelectedRows{
+            for index in array {
+                selected.append(notes[index.row])
+            }
+     }
+        print(selected)
+       
     }
     
 }
