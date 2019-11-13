@@ -32,7 +32,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     
     
     
-    @IBAction func editButtonPressed(_ sender: UIButton) {
+    @IBAction func editButtonPressed(_ sender: UIButton) {       // Edit Button functionality
         
         let title = editButton.titleLabel?.text
                
@@ -86,7 +86,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         let cell:UITableViewCell = (self.StoryTableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
 
         
-         cell.textLabel?.text = FolderNames[indexPath.row]
+         cell.textLabel?.text = FolderNames[indexPath.row]         // getting folder names
         
         cell.imageView?.image = UIImage(named: "folder-icon")
         
@@ -123,7 +123,8 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
                         
                         
                        
-                        FolderNames.append(textField!.text!)
+                     FolderNames.append(textField!.text!) // Getting folder names on the tap of add item
+                        
                         self.StoryTableView.reloadData()
                        
                        
@@ -153,7 +154,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
 
 
-    let item = FolderNames[sourceIndexPath.row]
+    let item = FolderNames[sourceIndexPath.row]     // Function to move rows on the tap of edit
     FolderNames.remove(at: sourceIndexPath.row)
     FolderNames.insert(item, at: destinationIndexPath.row)
 

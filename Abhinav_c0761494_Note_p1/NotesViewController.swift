@@ -31,7 +31,7 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
     
     }
     func sendData(data: String) {
-    notes.append(data)
+    notes.append(data)                              // getting data from textview
         NotesTableView.reloadData()
     }
     
@@ -51,7 +51,7 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         return cell
        }
 
-    @IBAction func EllipseButton(_ sender: UIButton) {
+    @IBAction func EllipseButton(_ sender: UIButton) {      // ellipse button function
         
         
         if TrashButton.isEnabled == false && FolderButton.isEnabled == false{
@@ -66,7 +66,7 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         }
        
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Data transefer segue
         let userData = segue.destination as! TextViewController
         userData.delegate = self
         
@@ -74,7 +74,7 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
     }
     
    
-    
+    // editing functionality on selecting or deselecting of rows
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -101,6 +101,7 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
 
 extension NotesViewController {
     
+    // Getting array of all selected or deselected rows 
     
     func selectOrDeselect (tableview: UITableView , indexpath: IndexPath){
         self.selected.removeAll()
