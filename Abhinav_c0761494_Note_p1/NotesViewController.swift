@@ -10,15 +10,6 @@ import UIKit
 
 
 class NotesViewController: UIViewController , UITableViewDataSource ,UITableViewDelegate , canRecieve {
-    func sendData(data: String) {
-    notes.append(data)
-        NotesTableView.reloadData()
-    }
-    
-   
-   
-    
-    
     
     var notes:[String] = []
     
@@ -33,10 +24,17 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         super.viewDidLoad()
         TrashButton.isEnabled = false
         FolderButton.isEnabled = false
-       
+        
+        
+          self.NotesTableView.allowsMultipleSelectionDuringEditing = true
         
     
     }
+    func sendData(data: String) {
+    notes.append(data)
+        NotesTableView.reloadData()
+    }
+    
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,9 +73,30 @@ class NotesViewController: UIViewController , UITableViewDataSource ,UITableView
         
     }
     
+   
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+      self.NotesTableView.isEditing = true
+        self.selectOrDeselect(tableview: NotesTableView, indexpath: indexPath)
+        
+    }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        self.selectOrDeselect(tableview: NotesTableView, indexpath: indexPath)
+        
+        
+    }
     
 }
 
+extension NotesViewController {
+    
+    
+    func selectOrDeselect (tableview: UITableView , indexpath: IndexPath){
+        
+    }
+    
+}
